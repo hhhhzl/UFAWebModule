@@ -1,0 +1,10 @@
+Spring:
+  redis:
+    host: 127.0.0.1
+    password: 150460
+    port: 6379
+    jedis:
+      pool:
+        max-active: -1 #负数表示连接池没有限制
+server:
+  port: 8080
