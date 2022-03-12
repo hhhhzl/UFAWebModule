@@ -26,7 +26,6 @@ public class OrDerBookWsController {
 
     private static RedissonClient redissonClient;
 
-
     private static SubScribe subScribe;
 
     private Session session;
@@ -62,7 +61,7 @@ public class OrDerBookWsController {
         singleOnlineMap.put(session.getId(),this);
         orderBookOnlineMap.put(orderBookParam,singleOnlineMap);
         //开启订阅模式
-        subScribe.subscribeOrderBook(marketCode, stockCode, session);
+        subScribe.subscribeOrderBook(marketCode, stockCode);
     }
 
     @OnError

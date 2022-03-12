@@ -3,7 +3,6 @@ package com.han56.ufawebmodule.utils.listener;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
-
 import javax.websocket.Session;
 import java.io.IOException;
 
@@ -15,7 +14,7 @@ import java.io.IOException;
 @Component
 public class RedisMessageListener implements MessageListener {
 
-    //用户Session 不同于httpSession
+    //用户WebSession 不同于httpSession
     private Session session;
 
     //用户id
@@ -23,33 +22,6 @@ public class RedisMessageListener implements MessageListener {
 
     //在线人数
     private Integer onlineCount;
-
-    //上述属性的Getter And Setter
-
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public Integer getOnlineCount() {
-        return onlineCount;
-    }
-
-    public void setOnlineCount(Integer onlineCount) {
-        this.onlineCount = onlineCount;
-    }
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
@@ -82,6 +54,31 @@ public class RedisMessageListener implements MessageListener {
 
     public void doLiXian(String userId){
         System.out.println("不在线的话做出的操作，比如发送邮件提示上线等操作");
+    }
+
+    //上述属性的Getter And Setter
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Integer getOnlineCount() {
+        return onlineCount;
+    }
+
+    public void setOnlineCount(Integer onlineCount) {
+        this.onlineCount = onlineCount;
     }
 
 }

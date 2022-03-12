@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>websocket_Test</title>
+</head>
+<body>
+<div>
+  <h3>UFA摆盘数据——Testing...</h3>
+  <div id="msgtext">
+  </div>
+  <div>
+    <input id="market_code" name="market_code" type="text" placeholder="请输入市场代号"/>
+    <input id="stock_code" name="stock_code" type="text" placeholder="请输入股票代码">
+    <button onclick="connectWebSocket();">连接WebSocket</button>
+    <br>
+<!--    <input id="msg" name="msg" type="text" placeholder="请输入发生信息"/>-->
+<!--    <button onclick="sendmsg();">发送</button>-->
+  </div>
+</div>
+
+</body>
+<script type="text/javascript">
+  var ws;
+  function connectWebSocket(){
+    if('WebSocket' in window){
+      var url="ws://localhost:8086/orderbook/";
+      var market_code_val=document.getElementById("market_code").value;
+      var stock_code_val=document.getElementById("stock_code").value;
+      if(market_code_val==="" || market_code_val===null||stock_code_val===""||stock_code_val===null){
+        alert("请输入订阅信息");
+        return;
+      }else{
+        url=url+market_code_val+'/'+stock_code_val;
+      }
+      ws = new WebSocket(url);
+    }else{
+      alert("不支持 websocket");
+    }
+    ws.onopen = function(evt){
+      //alert("op");
+    }
+    ws.onclose =function(evt){
+      alert("close");
+    }
+    //接收到后端的信息后将测试json数据填充进 id=msg 的div块中进行显示
+    ws.onmessage = function(evt){
+      var msg = evt.data;
+      if("[object Blob]" !== msg){
+        var msgdiv = document.getElementById("msgtext");
+        var span = document.createElement("span");
+        span.innerHTML = msg+"<br />";
+        msgdiv.appendChild(span);
+      }else{
+        var msgdiv = document.getElementById("msgtext");
+        var span = document.createElement("span");
+        var br = document.createElement("br");
+        var can = document.createElement("canvas");
+        var context = can.getContext("2d");
+        var image = new Image();
+        image.onload = function () {
+          //image.height
+          context.clearRect(0, 0, can.width, can.height);
+          context.drawImage(image, 0, 0, can.width, can.height);
+        }
+        image.src = URL.createObjectURL(msg);
+        span.appendChild(can);
+        span.appendChild(br);
+        msgdiv.appendChild(span);
+      }
+    }
+
+    ws.onerror = function(evt){
+      alert("error");
+    }
+  }
+  function sendmsg(){
+    var message={};
+    message.content="("+new Date().toLocaleTimeString()+")<br />"+document.getElementById("msg").value;
+    message.username=$('#username').val();
+    ws.send(JSON.stringify(message));
+  }
+
+</script>
+</html>

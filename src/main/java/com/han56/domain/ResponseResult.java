@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * @author han56
- * @description 功能描述
+ * @description 功能描述：同意返回结构体封装
  * @create 2022/2/20 下午3:39
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
