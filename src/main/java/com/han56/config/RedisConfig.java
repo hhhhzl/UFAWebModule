@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.config;
+package com.han56.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

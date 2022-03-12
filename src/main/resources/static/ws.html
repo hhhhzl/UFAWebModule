@@ -25,7 +25,7 @@
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
         //23是一个ID ，stock是要订阅的话题
-        websocket = new WebSocket("ws://localhost:8080/socket/23/basicQot:00700");
+        websocket = new WebSocket("ws://localhost:8086/orderbook/22/000045");
 
     } else {
         alert('当前浏览器 Not support websocket')
@@ -80,7 +80,7 @@
         //判断当前浏览器是否支持WebSocket
         if ('WebSocket' in window) {
             //不存在而且浏览器支持，重新打开连接
-            websocket = new WebSocket("ws://127.0.0.1:8080/socket/23/stock00700");
+            websocket = new WebSocket("ws://127.0.0.1:8086/orderbook/22/000045");
             setMessageInnerHTML("已经重新打开了");
         } else {
             alert('当前浏览器 Not support websocket')

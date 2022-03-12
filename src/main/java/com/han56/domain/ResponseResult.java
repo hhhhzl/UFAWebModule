@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.domain;
+package com.han56.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

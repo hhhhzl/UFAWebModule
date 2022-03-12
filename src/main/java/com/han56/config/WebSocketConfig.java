@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.config;
+package com.han56.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

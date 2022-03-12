@@ -1,8 +1,8 @@
-package com.han56.ufawebmodule.service.subscribe;
+package com.han56.service.subscribe;
 
 import com.alibaba.fastjson.JSON;
-import com.han56.ufawebmodule.controller.OrDerBookWsController;
-import com.han56.ufawebmodule.entity.orderBookBean.OrderBookS2C;
+import com.han56.controller.OrDerBookWsController;
+import com.han56.entity.orderBookBean.OrderBookS2C;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
@@ -35,8 +35,8 @@ public class SubScribe {
             // 接受订阅的消息
             @Override
             public void onMessage(CharSequence charSequence, OrderBookS2C orderBookS2C) {
-                log.info("接受到消息主题={}，内容={}",charSequence,orderBookS2C.toString());
-                OrDerBookWsController.broadCast(orderParm, JSON.toJSONString(orderBookS2C));
+                //log.info("接受到消息主题={}，内容={}",charSequence,orderBookS2C.toString());
+                OrDerBookWsController.broadCast( JSON.toJSONString(orderBookS2C),orderParm);
             }
         });
     }

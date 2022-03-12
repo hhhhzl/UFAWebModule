@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.utils;
+package com.han56.utils;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.BeansException;

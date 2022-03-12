@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.utils;
+package com.han56.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;

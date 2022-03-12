@@ -1,6 +1,6 @@
-package com.han56.ufawebmodule.controller;
+package com.han56.controller;
 
-import com.han56.ufawebmodule.service.subscribe.SubScribe;
+import com.han56.service.subscribe.SubScribe;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,6 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author han56
@@ -81,10 +80,7 @@ public class OrDerBookWsController {
     //广播：循环单播
     public static void broadCast(String msg,String orderParam){
 
-        ConcurrentHashMap<String,OrDerBookWsController> tmpMap;
-        tmpMap=orderBookOnlineMap.get(orderParam);
-
-        tmpMap.forEach((k,v)->{
+        orderBookOnlineMap.get(orderParam).forEach((k,v)->{
             try {
                 v.sendMessage(msg);
             }catch (Exception e){

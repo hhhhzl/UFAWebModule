@@ -1,10 +1,15 @@
 Spring:
   redis:
     host: 127.0.0.1
-    password: 150460
     port: 6379
-    jedis:
+    password: 150460
+    database: 0
+    lettuce:
       pool:
-        max-active: -1 #负数表示连接池没有限制
+        max-idle: 8
+        min-idle: 0
+        max-active: -1 #-1表示没有限制
+        max-wait: -1ms
+    timeout: 10000ms
 server:
-  port: 8080
+  port: 8086

@@ -1,4 +1,4 @@
-package com.han56.ufawebmodule.utils.listener;
+package com.han56.utils.listener;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
