@@ -3,6 +3,7 @@ package com.han56.service.subscribe;
 import com.alibaba.fastjson.JSON;
 import com.han56.controller.OrDerBookWsController;
 import com.han56.entity.orderBookBean.OrderBookS2C;
+import com.han56.entity.tcDataSource.TcOrderBookBean;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
@@ -31,12 +32,12 @@ public class SubScribe {
         String orderParm = "orderbook"+"-"+marketCode+"-"+stockCode;
         RTopic rTopic = redissonClient.getTopic(orderParm);
         // 接收订阅的消息
-        rTopic.addListener(OrderBookS2C.class, new MessageListener<OrderBookS2C>() {
+        rTopic.addListener(TcOrderBookBean.class, new MessageListener<TcOrderBookBean>() {
             // 接受订阅的消息
             @Override
-            public void onMessage(CharSequence charSequence, OrderBookS2C orderBookS2C) {
+            public void onMessage(CharSequence charSequence, TcOrderBookBean tcOrderBookBean) {
                 //log.info("接受到消息主题={}，内容={}",charSequence,orderBookS2C.toString());
-                OrDerBookWsController.broadCast( JSON.toJSONString(orderBookS2C),orderParm);
+                OrDerBookWsController.broadCast( JSON.toJSONString(tcOrderBookBean),orderParm);
             }
         });
     }
