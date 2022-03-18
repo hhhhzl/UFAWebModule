@@ -77,6 +77,6 @@ public class CommonController {
         logger.info("触发月线API时的时间："+simpleDateFormat.format(endTime)+"结束时间："+simpleDateFormat.format(startTime));
         return commonKLineData.getMonthKLine(simpleDateFormat.format(endTime), simpleDateFormat.format(startTime),stockCode);
     }
-    
+
 
 }
