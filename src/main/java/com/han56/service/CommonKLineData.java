@@ -12,21 +12,21 @@ public interface CommonKLineData {
 
     /*
     * 获取日K线
-    * 考虑到的情况：
-    * 1.输入日期如果是星期六星期天，则返回空并附加提示信息
+    * @param
+    * 1.startDate:起始时间 2021-03-22
+    * 2.endDate:终止时间  2022-03-22 （最近请求的）
+    * 3.stockCode:股票代号 （sz/sh）002594
+    * 4.redisKey：存到缓存的key值
+    * 5.timeFrame:时间规格选择参数 1d（日线） 1w（周线） 1M（月线）
     * */
-    String getDayKLine(String startDate,String endDate,String stockCode) throws IOException;
+    String getDayAndWeekAndMonthKLine(String startDate,String endDate,String stockCode,String redisKey,String timeFrame) throws IOException;
 
-    //获取周K线
-    String getWeekKLine(String startDate,String endDate,String stockCode);
 
-    //获取月K线
-    String getMonthKLine(String startDate,String endDate,String stockCode);
-
-    //获取季度K线
-    String getQuatKLine(String QuatDate);
-
-    //获取年K线
-    String getYearKLine(String yearDate);
+    /*
+    * 获取分时线 1m 5m 15m 30m 60m
+    * 该接口也可以替代腾讯数据源的日线 周线 只需要将 scale 换成 240（天） 1200（周）
+    * 注意：日线只能每天的 15:00 之后更新最新的数据。参数不需要时间限制，自动返回最近的 1023 个节点
+    * */
+    String getOneMinuteKLine(String stockCode,String scale,String redisKey);
 
 }
