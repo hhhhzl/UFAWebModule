@@ -1,5 +1,7 @@
 package com.han56.service;
 
+import com.han56.entity.tcDataSource.TcOrderBookRequestParam;
+
 import java.io.IOException;
 
 /**
@@ -28,5 +30,11 @@ public interface CommonKLineData {
     * 注意：日线只能每天的 15:00 之后更新最新的数据。参数不需要时间限制，自动返回最近的 1023 个节点
     * */
     String getOneMinuteKLine(String stockCode,String scale,String redisKey);
+
+    /*
+    * 获取摆盘数据
+    * 为 http 接口提供服务
+    * */
+    String getOrderBookForHttpApi(TcOrderBookRequestParam tcOrderBookRequestParam);
 
 }
