@@ -105,10 +105,10 @@ public class Utils {
         endTimeCalendar2.setTime(endTime2);
 
         if(nowCalendar.before(beginTimeCalendar1)||nowCalendar.after(endTimeCalendar2)){
-            log.warn("当前时间处在9:30之前,15:00之后，交易所处于停市状态");
+            log.warn("当前时间处在9:30之前,15:00之后，交易所处于停市状态，返回最近数据");
             return false;
-        }else if(nowCalendar.before(beginTime2)&&nowCalendar.after(endTime1)){
-            log.warn("当前时间处在13:30之前,11:00之后，交易所处于停市状态");
+        }else if(nowCalendar.before(beginTimeCalendar2)&&nowCalendar.after(endTimeCalendar1)){
+            log.warn("当前时间处在13:30之前,11:00之后，交易所处于停市状态，返回最近数据");
             return false;
         }
         return true;
